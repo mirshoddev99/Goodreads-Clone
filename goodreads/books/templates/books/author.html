@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Author{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-6" style="width: 28%;">
+            <div class="card" style="width: 18rem;">
+                <img class="author_img" src="{{ author.personal_photo.url }}" alt="Author image">
+            </div>
+
+        </div>
+        <div class="col-4">
+             <h2>{{ author.first_name }} {{ author.last_name }}</h2>
+            <p class="card-text">{{ author.bio }}</p>
+
+        </div>
+    </div>
+</div>
+
+
+<h3 class="mb-5 mt-5 text-center">{{ author.first_name }} {{ author.last_name }}'s Books</h3>
+<hr><br>
+<div class="container">
+    <div class="row">
+            {% for book_details in author.bookauthor_set.all %}
+     <div class="col-4">
+           <div class="card" style="width: 22rem;">
+            <img src="{{ book_details.book.cover_picture.url }}" class="card_book" alt="Book image">
+            <div class="card-body">
+            <h5 class="card-title">{{ book_details.book.title }}</h5>
+            <p class="card-text">{{ book_details.book.description | slice:"200" }}...</p>
+            <a href="{% url 'books:detail' book_details.book.id %}" class="btn btn-primary" role="button">Reading</a>
+         </div>
+    </div>
+  </div>
+
+            {% endfor %}
+
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %} Home page {% endblock %}
+
+{% block content %}
+
+<h1>Home page</h1>
+
+
+
+
+
+{% for review in page_obj %}
+
+<div class="container posts-content">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="media mb-3">
+                        <img src="{{ review.user.profile_picture.url }}"
+                             class="small-profile-pic" alt="">
+                        <div class="media-body ml-3">
+                           <b>{{ review.user.username }}</b> rated this book {{ review.stars_given }} stars
+                            <div class="text-muted small">{{ review.created_at |date:'M d, Y'}}</div>
+                        </div>
+                    </div>
+
+                    <p>
+                        {{ review.comment | truncatechars:200 }}
+                    </p>
+                        <img class="cover_pic_center" src="{{ review.book.cover_picture.url }}" alt="cover image">
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endfor %}
+
+        <nav>
+            <ul class="pagination">
+                {% if page_obj.has_previous %}
+                    <li class="page-item"><a class="page-link" href="?page=1">&laquo; first</a></li>
+                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">previous</a></li>
+                {% endif %}
+
+                <li class="page-item active">
+                    <a href="#" class="page-link">{{ page_obj.number }}</a>
+                </li>
+
+                {% if page_obj.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">next</a></li>
+                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">last&raquo;</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+
+
+
+{% endblock %}

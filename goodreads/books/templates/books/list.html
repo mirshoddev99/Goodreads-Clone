@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %}Books page{% endblock %}
+
+{% block content %}
+
+<h1>Books</h1>
+<br>
+
+<div class="row mb-3">
+    <div class="col-4">
+        <form method="get" class=" d-flex me-2">
+            <input type="text" class="form-control me-2" placeholder="Search" name="q" value="{{ search_query }}">      <! -- viewda 'q' dan foydalanib requestdan keyotgan valueni olamiz -->
+            <button class="btn btn-success">Search</button>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    {% if page_obj %}
+
+            {% for book in page_obj.page_obj %}
+                <div class="row mb-4">
+                    <div class="col-2 me-5">
+                        <img class="cover_pic" src="{{ book.cover_picture.url }}" alt="cover image">
+                    </div>
+                    <div class="col-6 ms-5">
+                        <a href="{% url 'books:detail' book.id %}" style="text-decoration: none;"><h4>{{ book.title}}</h4></a>
+                        <p>{{ book.description }}</p>
+
+                    </div>
+                </div>
+
+
+
+            {% endfor %}
+
+        <nav>
+            <ul class="pagination">
+                {% if page_obj.has_previous %}
+                    <li class="page-item"><a class="page-link" href="?page=1">&laquo; first</a></li>
+                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">previous</a></li>
+                {% endif %}
+
+                <li class="page-item active">
+                    <a href="#" class="page-link">{{ page_obj.number }}</a>
+                </li>
+
+                {% if page_obj.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">next</a></li>
+                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">last&raquo;</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+
+    {% else %}
+        <p>No books found.</p>
+    {% endif %}
+
+{% endblock %}

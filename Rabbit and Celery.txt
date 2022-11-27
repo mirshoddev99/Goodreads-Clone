@@ -1,0 +1,7 @@
+1. to start rabbitmq ->    rabbitmq-server start
+
+2. to stop rabbitmq ->    rabbitmq-server stop
+
+3. To check queues ->     rabbitmqctl.bat list_queues
+
+4. to start Celery ->   celery -A goodreads worker -l info -P gevent
