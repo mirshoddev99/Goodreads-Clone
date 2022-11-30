@@ -34,8 +34,8 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     'rest_framework',
     # local apps
-    'users',
     'books',
+    'users',
     "api",
 ]
 

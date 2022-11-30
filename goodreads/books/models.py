@@ -5,7 +5,6 @@ from users.models import CustomUser
 
 
 
-
 class Book(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
