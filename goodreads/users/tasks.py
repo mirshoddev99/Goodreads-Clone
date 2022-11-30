@@ -23,6 +23,7 @@ def sending_email(reciever, username):
         print("Logged in...")
         server.sendmail(sender, reciever, message)
         print("Email has been sent!")
+
     except smtplib.SMTPAuthenticationError:
         print("Failed")
 
