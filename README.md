@@ -27,7 +27,7 @@ You need to have Python and pip installed on your machine. You can download the 
 
 2. Change into the project directory:
 
-  ``cd goodreads-clone``
+  `cd goodreads-clone`
 
 3. Create a virtual environment and activate it
   
