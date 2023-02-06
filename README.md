@@ -21,31 +21,34 @@ These instructions will get you a copy of the project up and running on your loc
 You need to have Python and pip installed on your machine. You can download the latest version of Python here.
 
 # Installing
-1. Clone the repository:
-bash
+1. Clone the repository using bash command:
 
-git clone https://github.com/mirshoddev99/goodreads-clone.git
+  git clone https://github.com/mirshoddev99/goodreads-clone.git
 
-2. Change into the project directory
-bash
-cd goodreads-clone
+2. Change into the project directory:
+
+  cd goodreads-clone
 
 3. Create a virtual environment and activate it
-bash
-python -m venv env
-source env/bin/activate
+  
+  python -m venv env
+  source env/bin/activate
 
-4. Install the required packages
-pip install -r requirements.txt
+4. Install the required packages:
 
-5. Run the migrations
-python manage.py migrate
+  pip install -r requirements.txt
 
-6. Start the Celery worker
-celery -A goodreads_clone worker -l info
+5. Run the migrations:
 
-7. Start the Django development server
-python manage.py runserver
+  python manage.py migrate
+
+6. Start the Celery worker:
+  
+  celery -A goodreads_clone worker -l info
+
+7. Start the Django development server:
+  
+  python manage.py runserver
 
 The application will be running on http://localhost:8000. The API endpoint will be at http://localhost:8000/api/.
 
