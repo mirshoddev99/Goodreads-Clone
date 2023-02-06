@@ -21,8 +21,9 @@ These instructions will get you a copy of the project up and running on your loc
 You need to have Python and pip installed on your machine. You can download the latest version of Python here.
 
 # Installing
-1. Clone the repository
+1. Clone the repository:
 bash
+
 git clone https://github.com/mirshoddev99/goodreads-clone.git
 
 2. Change into the project directory
