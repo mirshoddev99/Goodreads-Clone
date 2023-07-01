@@ -6,8 +6,18 @@ from users.models import CustomUser
 class CustomUserCreateForm(forms.ModelForm):
     class Meta:
         model = CustomUser
-        fields = ('username', 'first_name', 'last_name', 'email', 'password')
+        fields = ('username', 'first_name', 'last_name', 'email', 'password', "password2")
 
+    
+    def clean_password(self):
+        cd = self.cleaned_data
+        password1 = cd.get("password")
+        password2 = cd.get("password2")
+
+        if password1 and password2 and password1 != password2:
+            raise forms.ValidationError("Password mismatch!")
+        return password2
+    
     def save(self, commit=True):
         # Commit = True -> Store data to tha database right now.
         # Commit = False -> Store data temporary not to tha database right now.

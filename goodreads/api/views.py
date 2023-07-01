@@ -40,12 +40,12 @@ class BookReviewsViewSet(viewsets.ModelViewSet):
 #     serializer_class = BookReviewSerializer
 #     queryset = BookReview.objects.all()
 #     lookup_field = 'id'
-#
-#
-    # def get(self, request, id):
-    #     book_review = BookReview.objects.get(id=id)
-    #     serializer = BookReviewSerializer(book_review)
-    #     return Response(data=serializer.data)
+
+
+#     def get(self, request, id):
+#         book_review = BookReview.objects.get(id=id)
+#         serializer = BookReviewSerializer(book_review)
+#         return Response(data=serializer.data)
 #     #
 #     #
 #     #
