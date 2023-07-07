@@ -1,7 +1,7 @@
 from goodreads.celery import app
 import smtplib
 
-@app.task()
+# @app.task()
 def sending_email(reciever, username):
     sender = 'mirshodpnu22@gmail.com'
     password = 'obypzyiavxjkkddp'

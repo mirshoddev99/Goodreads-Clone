@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.views import View
-from users.forms import CustomUserCreateForm, UserUpdateForm
+from users.forms import UserCreateForm, UserUpdateForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout
 from users.tasks import sending_email
@@ -12,25 +12,26 @@ from users.tasks import sending_email
 
 class RegisterView(View):
     def get(self, request):
-        user_form = CustomUserCreateForm()
+        user_form = UserCreateForm()
         contex = {'form':user_form}
         return render(request, 'users/register.html', contex)
 
 
 
     def post(self, request):
-        user_form = CustomUserCreateForm(data=request.POST)
+        user_form = UserCreateForm(data=request.POST)
         if user_form.is_valid():
             email = user_form.cleaned_data['email']
             username = user_form.cleaned_data['username']
             sending_email(email, username)
-            user_form.save()
+            user = user_form.save(commit=False)
+            user.set_password(user_form.cleaned_data['password'])
+            user.save()
             messages.success(request, "You have successfully registered")
             return redirect('users:login')
-
-        else:
-            contex = {'form': user_form}
-            return render(request, 'users/register.html', contex)
+        
+        contex = {'form': user_form}
+        return render(request, 'users/register.html', contex)
 
 
 
